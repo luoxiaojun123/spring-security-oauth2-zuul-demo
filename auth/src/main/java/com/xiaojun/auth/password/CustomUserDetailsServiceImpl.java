@@ -27,7 +27,9 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_CUSTOMER"));
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+        /*return new User("customer", "$2a$10$3.KvTyyR6dcQYoTC5JMc8u7GPYE7W8xN19ijEHkbN0Gn4ktOt7TlG",
+                true, true, true, true, authorities);*/
         return new CustomUser(1, "customer", "$2a$10$3.KvTyyR6dcQYoTC5JMc8u7GPYE7W8xN19ijEHkbN0Gn4ktOt7TlG",
-                true, true, true, false, authorities);
+                true, true, true, true, authorities);
     }
 }

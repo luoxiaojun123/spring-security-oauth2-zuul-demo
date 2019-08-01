@@ -31,6 +31,9 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) {
+
+        /// resources.tokenStore(new RedisTokenStore(redisConnectionFactory)); redis校验token
+
         resources.authenticationEntryPoint(authenticationEntryPoint)
                 .accessDeniedHandler(accessDeniedHandler);
     }

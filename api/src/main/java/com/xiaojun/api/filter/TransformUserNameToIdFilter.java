@@ -37,6 +37,7 @@ public class TransformUserNameToIdFilter extends ZuulFilter {
 
         if (authentication instanceof OAuth2Authentication) {
             String userName = (String) authentication.getPrincipal();
+            /// User user = (User) authentication.getPrincipal(); redis校验token
             RequestContext ctx = RequestContext.getCurrentContext();
             ctx.set(USER_ID, userName);
             return true;
