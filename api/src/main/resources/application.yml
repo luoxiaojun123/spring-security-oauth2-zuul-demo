@@ -1,0 +1,35 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: api
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/auth?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: root
+    test-while-idle: true
+    test-on-borrow: true
+    validation-query: SELECT 1 FROM DUAL
+    time-between-eviction-runs-millis: 300000
+    min-evictable-idle-time-millis: 1800000
+logging:
+  level:
+    org.springframework: info
+
+zuul:
+  ignored-services: '*'
+  sensitive-headers: Cookie,Set-Cookie,Authorization
+  ribbon:
+    eager-load:
+      enabled: true
+
+security:
+  oauth2:
+    client:
+      client-id: api
+      client-secret: 123456
+      access-token-uri: http://localhost:8081/uaa/oauth/token
+      user-authorization-uri: http://localhost:8081/uaa/oauth/authorize
+    resource:
+      token-info-uri: http://localhost:8081/uaa/oauth/check_token
