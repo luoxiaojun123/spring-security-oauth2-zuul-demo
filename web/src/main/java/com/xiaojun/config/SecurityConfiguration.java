@@ -11,11 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDecisionVoter;
-import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
-import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
-import org.springframework.security.access.vote.AffirmativeBased;
 import org.springframework.security.access.vote.RoleHierarchyVoter;
-import org.springframework.security.access.vote.RoleVoter;
 import org.springframework.security.access.vote.UnanimousBased;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.ObjectPostProcessor;
@@ -73,6 +69,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private SmsCodeAuthenticationConfig smsCodeAuthenticationConfig;
 
+    @Autowired
+    private RoleHierarchyVoter roleHierarchyVoter;
 
     @Override
     @Bean
@@ -126,9 +124,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public AppFilterInvocationSecurityMetadataSource mySecurityMetadataSource(FilterInvocationSecurityMetadataSource filterInvocationSecurityMetadataSource) {
         return new AppFilterInvocationSecurityMetadataSource(filterInvocationSecurityMetadataSource);
     }
-
-    @Autowired
-    private RoleHierarchyVoter roleHierarchyVoter;
 
     @Bean
     public AccessDecisionManager accessDecisionManager() {
